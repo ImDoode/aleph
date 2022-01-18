@@ -1,7 +1,26 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  src: url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  src: url('./assets/fonts/Inter-Bold.woff2') format('woff2');
+}
+
 body {
   --text-color: #222;
   --bkg-color: #fff;
   --anchor-color: #0033cc;
+  --fontFamily-sans: 'Inter',system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+
 }
 
 body.dark-theme {
@@ -12,8 +31,10 @@ body.dark-theme {
 
 
 body {
+  font-family: var(--fontFamily-sans);
   color: var(--text-color);
   background: var(--bkg-color);
+  
 }
 a {
   color: var(--anchor-color);
