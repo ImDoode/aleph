@@ -1,20 +1,20 @@
 
 
-export function formatHash(bytes: number, postfix = '', decimals = 2) {
-    if (bytes === 0)
+export function formatHash(value: number, postfix = '', decimals = 2) {
+    if (value === 0)
       return {
         formattedValue: 0,
-        formattedPostfix: 'Bytes'
+        formattedPostfix: 'Hashes'
       }
 
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const sizes = ['Hashes', 'KH', 'MH', 'GH', 'TH', 'PH'];
 
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const i = Math.floor(Math.log(value) / Math.log(k));
 
   return {
-    formattedValue: parseFloat((bytes / Math.pow(k, i)).toFixed(dm)),
+    formattedValue: parseFloat((value / Math.pow(k, i)).toFixed(dm)),
     formattedPostfix: `${sizes[i]}${postfix ? `/${postfix}` : ''}`
   };
 }
