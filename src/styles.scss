@@ -34,8 +34,10 @@ body {
   font-family: var(--fontFamily-sans);
   color: var(--text-color);
   background: var(--bkg-color);
-  
 }
 a {
   color: var(--anchor-color);
+}
+html {
+  font-size: 14px !important;
 }

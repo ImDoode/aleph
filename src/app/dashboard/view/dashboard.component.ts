@@ -8,7 +8,7 @@ import { IDashboardDataset } from '../dashboard.controller';
 })
 
 export class DashboardComponentViews implements OnInit {
-  @Input() dataset: IDashboardDataset[] = [];
+  @Input() dataset!: IDashboardDataset[] | null;
 
   constructor() { }
 

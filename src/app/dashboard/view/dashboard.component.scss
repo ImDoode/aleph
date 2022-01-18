@@ -1,0 +1,21 @@
+.data {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  &__item {
+    text-align: center;
+    margin: 0 1rem;
+  }
+  &__title {
+  }
+  &__value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  &__postfix {
+    font-size: 1.2rem;
+    padding-left: 0.2rem;
+  }
+}
