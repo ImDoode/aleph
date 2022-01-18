@@ -1,10 +1,10 @@
 
 
-export function formatHash(bytes: number, decimals = 2) {
+export function formatHash(bytes: number, postfix = '', decimals = 2) {
     if (bytes === 0)
       return {
         formattedValue: 0,
-        formattedPostfix: 'B'
+        formattedPostfix: 'Bytes'
       }
 
     const k = 1024;
@@ -15,6 +15,6 @@ export function formatHash(bytes: number, decimals = 2) {
 
   return {
     formattedValue: parseFloat((bytes / Math.pow(k, i)).toFixed(dm)),
-    formattedPostfix: sizes[i]
+    formattedPostfix: `${sizes[i]}${postfix ? `/${postfix}` : ''}`
   };
 }

@@ -4,17 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApiHttpService } from './core/api-http.service';
+import { ApiHttpService } from './shared/api-http.service';
+import { CurrencyPipe } from './shared/currency.pipe';
 import { DashboardComponentController } from './dashboard/dashboard.controller';
 import { DashboardComponentViews } from './dashboard/view/dashboard.component';
 import { MinersComponent } from './miners/miners.component';
+import { CurrencyService } from './shared/currency.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponentController,
     DashboardComponentViews,
-    MinersComponent
+    MinersComponent,
+    CurrencyPipe
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { MinersComponent } from './miners/miners.component';
     HttpClientModule
   ],
   providers: [
-    ApiHttpService
+    ApiHttpService,
+    CurrencyService
   ],
   bootstrap: [AppComponent]
 })

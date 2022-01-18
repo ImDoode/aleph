@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ApiHttpService } from '../core/api-http.service';
+import { ApiHttpService } from '../shared/api-http.service';
 import { IDashboardDataset } from './dashboard.controller';
 
 const DASHBOARD_DATA: IDashboardDataset[] = [
@@ -11,24 +10,15 @@ const DASHBOARD_DATA: IDashboardDataset[] = [
   },
   {
     type: 'hashrate',
-    value: 50000
-  },
-  {
-    type: 'hashrate',
-    value: 5000000
-  },
-
-  {
-    type: 'hashrate',
-    value: 50000000000
+    value: Math.floor(Math.random()*1000000000)
   },
   {
     type: 'activeMiners',
-    value: 50000
+    value: Math.floor(Math.random()*100000)
   },
   {
     type: 'payouts',
-    value: 1000
+    value: 1000//Math.floor(Math.random()*10000)
   }
 ];
 
