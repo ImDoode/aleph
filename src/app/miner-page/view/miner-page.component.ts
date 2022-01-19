@@ -1,17 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IMiner } from '../miner-page.controller';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { IMinerPageDataset } from '../miner-page.controller';
 
 @Component({
   selector: 'app-miner-page-view',
   templateUrl: './miner-page.component.html',
   styleUrls: ['./miner-page.component.scss']
 })
-export class MinerPageComponentView implements OnInit {
-  @Input() miner!: IMiner | null;
+export class MinerPageComponentView {
+  @Input() dataset!: IMinerPageDataset[] | null;
+  @Output() convertCurrency: EventEmitter<never> = new EventEmitter<never>();
 
-  constructor() { }
+  public faSyncAlt = faSyncAlt;
 
-  ngOnInit(): void {
+  public convertClick() {
+    this.convertCurrency.emit();
   }
 
 }

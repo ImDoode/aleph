@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IMinerPageDataset } from '../miner-page/miner-page.controller';
 import { ApiHttpService } from '../shared/api-http.service';
+import { IBlocksDataset } from './blocks.controller';
 
 // TODO: TEMPORATY
 function makeAddress(length: number) {
@@ -15,41 +15,29 @@ charactersLength));
  return result;
 }
 
-const MINER: IMinerPageDataset[] = [
-  {
-    type: 'address',
-    value: makeAddress(64),
-  },
-  {
-    type: 'sharePerHour',
-    value: Math.floor(Math.random()*500 + 400),
-  },
-  {
-    type: 'sharePerDay',
-    value: Math.floor(Math.random()*500 + 400)*24,
-  },
-  {
-    type: 'blocks',
-    value: [makeAddress(16), makeAddress(16), makeAddress(16), makeAddress(16)],
-  },
-  {
-    type: 'hashrate',
-    value: parseFloat((Math.random()*39000 + 1000).toFixed(4))
-  },
-];
+const DASHBOARD_DATA: IBlocksDataset[] = [];
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class MinerPageService {
+export class BlocksService {
 
   constructor(private apiService: ApiHttpService) {
-
+    for (let i = 0; i < 10; i++) {
+      DASHBOARD_DATA.push(
+        {
+          address: makeAddress(64),
+          shares: Math.floor(Math.random()*500000 + 400000),
+          domination: parseFloat((Math.random()*100).toFixed(2)),
+          hashrate: parseFloat((Math.random()*39000 + 1000).toFixed(4)),
+        }
+      );
+    }
   }
 
-  public getMinerData(): Observable<IMinerPageDataset[]> {
-    return of(MINER);
+  public getDashboardData(): Observable<IBlocksDataset[]> {
+    return of(DASHBOARD_DATA);
     /*return this.apiService.get<IDashboardDataset[]>('dashboard').pipe(
       map(result => result.json())
     );*/

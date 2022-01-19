@@ -16,6 +16,8 @@ import { MinersComponentView } from './miners/view/miners.component';
 import { RouterModule } from '@angular/router';
 import { MinerPageComponentController } from './miner-page/miner-page.controller';
 import { MinerPageComponentView } from './miner-page/view/miner-page.component';
+import { BlocksComponentController } from './blocks/blocks.controller';
+import { BlocksComponentView } from './blocks/view/blocks.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MinerPageComponentView } from './miner-page/view/miner-page.component';
     MinersComponentView,
     CurrencyPipe,
     MinerPageComponentController,
-    MinerPageComponentView
+    MinerPageComponentView,
+    BlocksComponentController,
+    BlocksComponentView
   ],
   imports: [
     BrowserModule,

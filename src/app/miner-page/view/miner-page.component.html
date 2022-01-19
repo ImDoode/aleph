@@ -1,1 +1,12 @@
-{{ miner | json }}
+<a routerLink="/miners">< Back to miners list</a>
+
+<div class="data">
+  <div class="data__item" *ngFor="let data of dataset">
+    <div class="data__title">{{ data.title }}</div>
+    <div class="data__value">
+      {{ data.value }}
+      <span class="data__postfix" *ngIf="data.postfix">{{ data.postfix }}</span>
+      <button *ngIf="data.type === 'payouts'" (click)="convertClick()" class="data__convert-button button--icon"><fa-icon [icon]="faSyncAlt"></fa-icon></button>
+    </div>
+  </div>
+</div>
