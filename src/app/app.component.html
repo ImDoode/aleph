@@ -5,6 +5,12 @@
     </div>
     <nav class="header__nav">
       <ul class="nav">
+        <li class="nav__item">
+          <button (click)="changeColorScheme()" class="button--icon">
+            <fa-icon [icon]="faMoon" *ngIf="!isDark"></fa-icon>
+            <fa-icon [icon]="faSun" *ngIf="isDark"></fa-icon>
+          </button>
+        </li>
         <li class="nav__item"><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
         <li class="nav__item"><a routerLink="/miners" routerLinkActive="active">Miners</a></li>
       </ul>

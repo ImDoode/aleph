@@ -10,6 +10,8 @@ import { DashboardComponentController } from './dashboard/dashboard.controller';
 import { DashboardComponentViews } from './dashboard/view/dashboard.component';
 import { MinersComponent } from './miners/miners.component';
 import { CurrencyService } from './shared/currency.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { CurrencyService } from './shared/currency.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     ApiHttpService,
-    CurrencyService
+    CurrencyService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

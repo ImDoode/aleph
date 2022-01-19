@@ -34,10 +34,26 @@ body {
   font-family: var(--fontFamily-sans);
   color: var(--text-color);
   background: var(--bkg-color);
+  transition-duration: .2s;
 }
 a {
   color: var(--anchor-color);
 }
 html {
   font-size: 14px !important;
+}
+
+.button {
+  &--icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 1.2rem;
+    height: 1.2rem;
+    padding: 0;
+    fa-icon {
+      transition-duration: .2s;
+      color: var(--text-color);
+    }
+  }
 }

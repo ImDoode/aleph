@@ -4,7 +4,7 @@
     <div class="data__value">
       {{ data.value }}
       <span class="data__postfix" *ngIf="data.postfix">{{ data.postfix }}</span>
-      <button *ngIf="data.type === 'payouts'" (click)="convertClick()" class="data__convert-button">Convert</button>
+      <button *ngIf="data.type === 'payouts'" (click)="convertClick()" class="data__convert-button button--icon"><fa-icon [icon]="faSyncAlt"></fa-icon></button>
     </div>
   </div>
 </div>
