@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th *ngFor="let column of tableColumns">{{ column.title }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dataset; let i = index">
+      <td>{{ i }}</td>
+      <td *ngFor="let column of tableColumns" [class]="column.slug" [title]="data[column.slug]">
+        <ng-container [ngSwitch]="column.slug">
+          <ng-container *ngSwitchCase="'address'">
+            <a routerLink="/miners/{{data[column.slug]}}">
+              {{ data[column.slug] }}
+            </a>
+          </ng-container>
+          <ng-container *ngSwitchDefault>{{ data[column.slug] }}</ng-container>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>

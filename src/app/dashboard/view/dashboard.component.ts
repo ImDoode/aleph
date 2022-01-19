@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { IDashboardDataset } from '../dashboard.controller';
 
@@ -8,17 +8,11 @@ import { IDashboardDataset } from '../dashboard.controller';
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponentViews implements OnInit {
+export class DashboardComponentViews {
   @Input() dataset!: IDashboardDataset[] | null;
   @Output() convertCurrency: EventEmitter<never> = new EventEmitter<never>();
 
-
   public faSyncAlt = faSyncAlt;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public convertClick() {
     this.convertCurrency.emit();

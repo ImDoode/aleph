@@ -28,8 +28,6 @@ const DASHBOARD_DATA: IDashboardDataset[] = [
 
 export class DashboardService {
 
-  
-
   constructor(private apiService: ApiHttpService) {}
 
   public getDashboardData(): Observable<IDashboardDataset[]> {

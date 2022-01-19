@@ -14,7 +14,6 @@ export class ColorSchemeService {
     ) {
         this.renderer = rendererFactory.createRenderer(null, null);
         this.setColorScheme(this.isDark);
-        debugger
     }
 
   public changeColorScheme() {
