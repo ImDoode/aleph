@@ -24,7 +24,7 @@
 .logo {
   width: 114px;
   height: 26px;
-  mask-image: url('/assets/images/logo.svg');
+  mask-image: url('./../assets/images/logo.svg');
   background: var(--text-color);
 }
 

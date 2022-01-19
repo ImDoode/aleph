@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --prod --base-href /aleph/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "publish": "docker build -t imdoode/aleph-app:latest . && docker push imdoode/aleph-app:latest"
   },
   "private": true,
   "dependencies": {
