@@ -1,1 +1,32 @@
-<p>blocks works!</p>
+<div class="data">
+  <div class="data__item" *ngFor="let data of dataset">
+    <div class="data__title">{{ data.title }}</div>
+    <div class="data__value">
+      {{ data.value }}
+      <span class="data__postfix" *ngIf="data.postfix">{{ data.postfix }}</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="blocks-list">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th *ngFor="let column of tableColumns">{{ column.title }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of blocksList; let i = index">
+        <td *ngFor="let column of tableColumns" [class]="column.slug" [title]="data[column.slug]">
+          <ng-container [ngSwitch]="column.slug">
+            <ng-container *ngSwitchCase="'time'">
+              {{ (data[column.slug].toString()) | timeAgo }}
+            </ng-container>
+            <ng-container *ngSwitchDefault>{{ data[column.slug] }}</ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

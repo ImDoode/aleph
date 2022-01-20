@@ -20,7 +20,7 @@ const CURRENCY_CONVERTER:ICurrency[] = [
   {
     slug: 'btc',
     ratio: 0.000024,
-    symbol: 'BTC'
+    symbol: '₿'
   }
 ];
 

@@ -18,6 +18,7 @@ import { MinerPageComponentController } from './miner-page/miner-page.controller
 import { MinerPageComponentView } from './miner-page/view/miner-page.component';
 import { BlocksComponentController } from './blocks/blocks.controller';
 import { BlocksComponentView } from './blocks/view/blocks.component';
+import { TimeAgoExtendsPipePipe } from './shared/time-ago-extends.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BlocksComponentView } from './blocks/view/blocks.component';
     MinerPageComponentController,
     MinerPageComponentView,
     BlocksComponentController,
-    BlocksComponentView
+    BlocksComponentView,
+    TimeAgoExtendsPipePipe
   ],
   imports: [
     BrowserModule,

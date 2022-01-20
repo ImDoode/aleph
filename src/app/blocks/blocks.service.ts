@@ -15,7 +15,32 @@ charactersLength));
  return result;
 }
 
-const DASHBOARD_DATA: IBlocksDataset[] = [];
+export interface IBlock {
+  number: number;
+  address: string;
+  time: string;
+}
+
+const BLOCKS_DATA: IBlocksDataset[] = [
+  {
+    type: 'hashrate',
+    value: 500
+  },
+  {
+    type: 'hashrate',
+    value: Math.floor(Math.random()*1000000000)
+  },
+  {
+    type: 'activeMiners',
+    value: Math.floor(Math.random()*100000)
+  },
+  {
+    type: 'payouts',
+    value: 1000//Math.floor(Math.random()*10000)
+  }
+];
+
+const BLOCKS_LIST_DATA: IBlock[] = []
 
 @Injectable({
   providedIn: 'root'
@@ -24,20 +49,27 @@ const DASHBOARD_DATA: IBlocksDataset[] = [];
 export class BlocksService {
 
   constructor(private apiService: ApiHttpService) {
+    const startNumber = Math.floor(Math.random()*100000);
     for (let i = 0; i < 10; i++) {
-      DASHBOARD_DATA.push(
+      BLOCKS_LIST_DATA.push(
         {
+          number: startNumber+i,
           address: makeAddress(64),
-          shares: Math.floor(Math.random()*500000 + 400000),
-          domination: parseFloat((Math.random()*100).toFixed(2)),
-          hashrate: parseFloat((Math.random()*39000 + 1000).toFixed(4)),
+          time: (new Date()).toString()
         }
       );
     }
   }
 
-  public getDashboardData(): Observable<IBlocksDataset[]> {
-    return of(DASHBOARD_DATA);
+  public getBlocksData(): Observable<IBlocksDataset[]> {
+    return of(BLOCKS_DATA);
+    /*return this.apiService.get<IDashboardDataset[]>('dashboard').pipe(
+      map(result => result.json())
+    );*/
+  }
+
+  public getBlocksListData(): Observable<IBlock[]> {
+    return of(BLOCKS_LIST_DATA);
     /*return this.apiService.get<IDashboardDataset[]>('dashboard').pipe(
       map(result => result.json())
     );*/

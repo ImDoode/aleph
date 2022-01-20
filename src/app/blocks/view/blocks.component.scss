@@ -1,0 +1,28 @@
+.data {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  margin-top: 40px;
+  &__value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  &__postfix {
+    font-size: 1.2rem;
+    padding-left: 0.2rem;
+  }
+  &__convert-button {
+    margin-left: 0.5rem;
+    &:hover {
+      ::ng-deep fa-icon svg {
+        transition-duration: .4s;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.blocks-list {
+  margin-top: 2rem;
+}

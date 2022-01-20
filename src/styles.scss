@@ -57,3 +57,26 @@ html {
     }
   }
 }
+
+table.custom-table {
+  & {
+    width: 100%;
+  }
+  &, th, td {
+    border: 1px solid var(--text-color);
+  }
+  th, td {
+    padding: 5px 20px;
+  }
+
+  td.address {
+    font-family: monospace;
+    max-width: 460px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+  }
+
+}
+
