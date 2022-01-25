@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 interface ICurrency {
   slug: string;
@@ -26,7 +28,11 @@ const CURRENCY_CONVERTER:ICurrency[] = [
 
 const CURRENCY_LIST = [
   'dollar', 'rouble', 'btc'
-]
+];
+
+export const TICKER_LIST = [
+  'alph', 'btc', 'eth'
+];
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +40,20 @@ const CURRENCY_LIST = [
 
 export class CurrencyService {
   private currentIndex = 0;
+  public currentTicker$ = new Subject();
+  
   
   constructor(
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+    this.route.params.subscribe(params => {
+      const ticker = params['ticker'];
+      
+      if (TICKER_LIST.includes(ticker)) {
+        this.currentTicker$.next(ticker);
+      }
+    });
+  }
 
   public changeNextCurrency() {
     this.currentIndex = this.currentIndex === (CURRENCY_LIST.length -1) ? 0 : this.currentIndex + 1;

@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { ActivationStart, Router } from '@angular/router';
+import { TICKER_LIST } from 'src/app/shared/currency.service';
 import { IMinersDataset } from '../miners.controller';
 
 @Component({
@@ -26,8 +28,19 @@ export class MinersComponentView {
       slug: 'hashrate',
       title: 'Hashrate',
     },
-  ]
+  ];
 
-  constructor() { }
+  public currentTicker: string = TICKER_LIST[0];
+
+  constructor (private router: Router) {
+    this.router.events.subscribe(data => {
+      if (data instanceof ActivationStart) {
+        const ticker = data.snapshot.params.ticker;
+        if (TICKER_LIST.includes(ticker)) {
+          this.currentTicker = ticker;
+        }
+      }
+    });
+  }
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MinerPageService } from './miner-page.service';
 
@@ -28,9 +29,16 @@ enum eMinerPageTitles {
     ></app-miner-page-view>
   `
 })
-export class MinerPageComponentController implements OnInit {
+export class MinerPageComponentController implements OnInit, OnDestroy {
   public dataset!: Observable<IMinerPageDataset[]>;
-  constructor(private minerPageService: MinerPageService) {
+  private route$: Subscription;
+  constructor(
+    private minerPageService: MinerPageService,
+    private route: ActivatedRoute
+  ) {
+    this.route$ = this.route.params.subscribe(params => {
+      console.log(params['id']);
+    });
     this.updateData();
   }
 
@@ -45,6 +53,11 @@ export class MinerPageComponentController implements OnInit {
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnDestroy(): void {
+    this.route$.unsubscribe();
   }
 
 }

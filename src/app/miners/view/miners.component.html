@@ -11,7 +11,7 @@
       <td *ngFor="let column of tableColumns" [class]="column.slug" [title]="data[column.slug]">
         <ng-container [ngSwitch]="column.slug">
           <ng-container *ngSwitchCase="'address'">
-            <a routerLink="/miners/{{data[column.slug]}}">
+            <a routerLink="/{{currentTicker}}/miners/{{data[column.slug]}}">
               {{ data[column.slug] }}
             </a>
           </ng-container>

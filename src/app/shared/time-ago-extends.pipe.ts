@@ -11,7 +11,7 @@ export class TimeAgoExtendsPipePipe implements PipeTransform, OnDestroy {
     let d = new Date(value);
     let now = new Date();
     let seconds = Math.round(Math.abs((now.getTime() - d.getTime()) / 1000));
-    let timeToUpdate = Number.isNaN(seconds) ? 1000 : this.getSecondsUntilUpdate(seconds) * 1000;
+    let timeToUpdate = 1000;//Number.isNaN(seconds) ? 1000 : this.getSecondsUntilUpdate(seconds) * 1000;
 
     this.timer = this.ngZone.runOutsideAngular(() => {
       if (typeof window !== 'undefined') {
@@ -28,8 +28,10 @@ export class TimeAgoExtendsPipePipe implements PipeTransform, OnDestroy {
     let years = Math.round(Math.abs(days / 365));
     if (Number.isNaN(seconds)) {
       return '';
-    } else if (seconds <= 45) {
+    } else if (seconds <= 10) {
       return 'a few seconds ago';
+    } else if (seconds <= 59) {
+      return seconds + ' seconds ago';
     } else if (seconds <= 90) {
       return 'a minute ago';
     } else if (minutes <= 45) {
