@@ -1,6 +1,8 @@
+import { Route } from '@angular/compiler/src/core';
 import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 
 interface ICurrency {
   slug: string;
@@ -40,19 +42,29 @@ export const TICKER_LIST = [
 
 export class CurrencyService {
   private currentIndex = 0;
-  public currentTicker$ = new Subject();
+  public currentTicker$ = new Subject<string>();
   
   
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
-    this.route.params.subscribe(params => {
-      const ticker = params['ticker'];
-      
-      if (TICKER_LIST.includes(ticker)) {
-        this.currentTicker$.next(ticker);
-      }
-    });
+    this.router.events
+      .pipe(
+        filter(event => {
+          return event instanceof NavigationEnd;
+        }),
+        map(() => this.activatedRoute.children[0]),
+        take(1)
+      ).subscribe(activatedRoute => {
+        activatedRoute.params.subscribe(params => {
+          const ticker = params['ticker'];
+        
+          if (TICKER_LIST.includes(ticker)) {
+            this.currentTicker$.next(ticker);
+          }
+        })
+      })
   }
 
   public changeNextCurrency() {

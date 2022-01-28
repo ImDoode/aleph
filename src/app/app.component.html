@@ -7,7 +7,7 @@
 
     <nav class="header__nav">
       <ul class="nav">
-        <li class="nav__item" *ngFor="let ticker of tickerList"><a [routerLink]="[ticker, 'dashboard']">{{ ticker }}</a></li>
+        <li class="nav__item" *ngFor="let ticker of tickerList"><a [routerLink]="[ticker, currentPage]">{{ ticker }}</a></li>
         <li class="nav__item">
           <button (click)="changeColorScheme()" class="button--icon">
             <fa-icon [icon]="faMoon" *ngIf="!isDark"></fa-icon>

@@ -15,18 +15,18 @@ export class AppComponent {
   public isDark = this.colorSchemeService.isDark;
   public currentTicker: string = TICKER_LIST[0];
   public tickerList = TICKER_LIST;
+  public currentPage: string = '';
   title = 'aleph';
 
   constructor (
     private colorSchemeService: ColorSchemeService,
     private router: Router,
+    private currencyService: CurrencyService
   ) {
+    this.currencyService.currentTicker$.subscribe((ticker:string) => this.currentTicker = ticker);
     this.router.events.subscribe(data => {
       if (data instanceof ActivationStart) {
-        const ticker = data.snapshot.params.ticker;
-        if (TICKER_LIST.includes(ticker)) {
-          this.currentTicker = ticker;
-        }
+        this.currentPage = data.snapshot.url[1].path;
       }
     });
   }

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivationStart, Router } from '@angular/router';
-import { TICKER_LIST } from 'src/app/shared/currency.service';
+import { CurrencyService, TICKER_LIST } from 'src/app/shared/currency.service';
 import { IMinersDataset } from '../miners.controller';
 
 @Component({
@@ -32,15 +31,8 @@ export class MinersComponentView {
 
   public currentTicker: string = TICKER_LIST[0];
 
-  constructor (private router: Router) {
-    this.router.events.subscribe(data => {
-      if (data instanceof ActivationStart) {
-        const ticker = data.snapshot.params.ticker;
-        if (TICKER_LIST.includes(ticker)) {
-          this.currentTicker = ticker;
-        }
-      }
-    });
+  constructor (private currencyService: CurrencyService) {
+    this.currencyService.currentTicker$.subscribe((ticker:string) => this.currentTicker = ticker);
   }
 
 }
